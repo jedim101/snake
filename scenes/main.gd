@@ -1,5 +1,9 @@
 extends Node
 
+var score: int
+
+var cells: int = 20
+var cells_size: int = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
