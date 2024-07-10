@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://bcsl3cjm6gxbx"]
+[gd_scene load_steps=3 format=3 uid="uid://bcsl3cjm6gxbx"]
+
+[ext_resource type="PackedScene" uid="uid://7mwf5xsgdmtc" path="res://scenes/player.tscn" id="1_yoeac"]
+
+[sub_resource type="GDScript" id="GDScript_8mnxq"]
 
 [node name="Main" type="Node"]
+script = SubResource("GDScript_8mnxq")
+
+[node name="Player" parent="." instance=ExtResource("1_yoeac")]
+position = Vector2(250, 250)
