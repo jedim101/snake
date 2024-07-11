@@ -1,11 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcsl3cjm6gxbx"]
 
-[ext_resource type="PackedScene" uid="uid://7mwf5xsgdmtc" path="res://scenes/player.tscn" id="1_yoeac"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_s41xl"]
 
-[sub_resource type="GDScript" id="GDScript_8mnxq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m70s"]
+size = Vector2(40, 40)
 
 [node name="Main" type="Node"]
-script = SubResource("GDScript_8mnxq")
+script = ExtResource("1_s41xl")
 
-[node name="Player" parent="." instance=ExtResource("1_yoeac")]
-position = Vector2(250, 250)
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Head" type="Area2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Head"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.0755415, 0.672819, 0.336423, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_2m70s")
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
