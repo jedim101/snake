@@ -11,6 +11,8 @@ script = ExtResource("1_s41xl")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Head" type="Area2D" parent="."]
+position = Vector2(250, 250)
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Head"]
 offset_right = 40.0

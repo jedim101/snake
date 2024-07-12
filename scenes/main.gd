@@ -1,5 +1,6 @@
 extends Node
 
+@export var length = 5
 var screen_size # Size of the game window.
 var direction = Vector2(1, 0)
 
@@ -25,7 +26,20 @@ func _on_Timer_timeout():
 	body_segment.color = "#13ac56"
 	body_segment.size.x = 40
 	body_segment.size.y = 40
+	body_segment.name = str(length - 1)
 
+	print(body_segment)
+
+	for i in range(length):
+		print(i)
+		var segment = get_node(str(i))
+		print(segment)
+		if segment:
+			segment.name = str(i - 1)
+	
+	var end_segment = get_node("-1")
+	if end_segment:
+		end_segment.queue_free()
 
 	$Head.position += direction * 40
 
