@@ -1,26 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcsl3cjm6gxbx"]
+[gd_scene load_steps=2 format=3 uid="uid://bcsl3cjm6gxbx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_s41xl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m70s"]
-size = Vector2(40, 40)
-
 [node name="Main" type="Node"]
 script = ExtResource("1_s41xl")
+length = 10
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 
-[node name="Head" type="Area2D" parent="."]
-position = Vector2(250, 250)
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Head"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Head" type="ColorRect" parent="."]
+offset_left = 250.0
+offset_top = 250.0
+offset_right = 290.0
+offset_bottom = 290.0
 color = Color(0.0755415, 0.672819, 0.336423, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-position = Vector2(20, 20)
-shape = SubResource("RectangleShape2D_2m70s")
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
