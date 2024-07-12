@@ -18,6 +18,15 @@ func _process(_delta):
 		direction = Vector2(0, -1)
 
 func _on_Timer_timeout():
-	$Head.position += direction * 50
+	var body_segment = ColorRect.new();
+	add_child(body_segment)
+
+	body_segment.position = $Head.position
+	body_segment.color = "#13ac56"
+	body_segment.size.x = 40
+	body_segment.size.y = 40
+
+
+	$Head.position += direction * 40
 
 	$Timer.start()
