@@ -45,7 +45,7 @@ func _on_Timer_timeout():
 	direction = new_direction
 	var new_head_position = $Head.position + direction * 40
 
-	if new_head_position in snake_positions():
+	if new_head_position in snake_positions() or new_head_position.x < 40 or new_head_position.x > 840 or new_head_position.y < 40 or new_head_position.y > 840:
 		$Timer.stop()
 		return
 
