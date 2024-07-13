@@ -4,7 +4,7 @@ extends Node
 var direction = Vector2(1, 0)
 var new_direction = Vector2(1, 0)
 
-var start_position = Vector2(400, 400)
+var start_position = Vector2(7 * 40 + 40, 11 * 40 + 40)
 
 var snake: Array
 
@@ -34,7 +34,7 @@ func snake_positions():
 	return snake.map(func(segment): return segment.position)
 
 func generate_apple():
-	var new_position = Vector2(randi_range(0, 20) * 40, randi_range(0, 20) * 40)
+	var new_position = Vector2(randi_range(0, 21) * 40 + 40, randi_range(0, 21) * 40 + 40)
 	
 	if new_position in snake_positions():
 		generate_apple()
@@ -47,7 +47,6 @@ func _on_Timer_timeout():
 
 	if new_head_position in snake_positions():
 		$Timer.stop()
-		$Head.color = "#000000"
 		return
 
 	new_segment($Head.position)
@@ -67,6 +66,6 @@ func new_segment(pos):
 	body_segment.position = pos
 	body_segment.size.x = 40
 	body_segment.size.y = 40
-	body_segment.color = "#13ac56"
+	body_segment.color = $Head.color
 
 	snake.append(body_segment)

@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcsl3cjm6gxbx"]
+[gd_scene load_steps=3 format=3 uid="uid://bcsl3cjm6gxbx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_s41xl"]
+[ext_resource type="Texture2D" uid="uid://c4fge1jjtr6m2" path="res://assests/Snake background.png" id="2_gldqo"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_s41xl")
 start_length = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(460, 460)
+texture = ExtResource("2_gldqo")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
@@ -14,7 +19,7 @@ offset_left = 250.0
 offset_top = 250.0
 offset_right = 290.0
 offset_bottom = 290.0
-color = Color(0.0755415, 0.672819, 0.336423, 1)
+color = Color(0, 1, 0, 1)
 
 [node name="Apple" type="ColorRect" parent="."]
 offset_right = 40.0
