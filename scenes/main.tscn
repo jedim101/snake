@@ -36,9 +36,9 @@ vertical_alignment = 1
 wait_time = 0.15
 
 [node name="Head" type="Sprite2D" parent="."]
-position = Vector2(-40, 2.08165e-12)
+position = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("3_pquqt")
-centered = false
+offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Apple" type="Sprite2D" parent="."]
 position = Vector2(-20, 60)

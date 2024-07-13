@@ -1,19 +1,22 @@
 extends Node
 
 @export var start_length: int
-var direction = Vector2(1, 0)
-var next_direction = Vector2(1, 0)
+var direction : Vector2
+var next_direction : Vector2
 
 var start_position = Vector2(7 * 40 + 40, 11 * 40 + 40)
 
 var snake: Array
 
 func start_game():
+	direction = Vector2(1, 0)
+	next_direction = Vector2(1, 0)
+
 	get_tree().paused = false
 	get_tree().call_group("snake", "queue_free")
 	$GameOver.hide()
 	snake = [$Head]
-	$Head.position = start_position
+	$Head.position = start_position + Vector2(20, 20)
 	generate_apple()
 
 	for i in range(start_length - 1):
@@ -71,17 +74,18 @@ func _process(_delta):
 func _on_Timer_timeout():
 	direction = next_direction
 	var new_head_position = $Head.position + direction * 40
+	$Head.rotation_degrees = direction.x * 90 + direction.y * 90 + abs(direction.y) * 90
 
-	if new_head_position in snake_positions() or new_head_position.x < 40 or new_head_position.x > 840 or new_head_position.y < 40 or new_head_position.y > 840:
+	if new_head_position in snake_positions() or new_head_position.x < 40 or new_head_position.x > 860 or new_head_position.y < 40 or new_head_position.y > 860:
 		$GameOver.show()
 		$Timer.stop()
 		get_tree().paused = true
 		return
 
-	new_segment($Head.position)
+	new_segment($Head.position - Vector2(20, 20))
 	$Head.position = new_head_position
 
-	if new_head_position == $Apple.position + Vector2(-20, -20):
+	if new_head_position == $Apple.position:
 		generate_apple()
 	else:
 		snake.pop_at(1).queue_free()
