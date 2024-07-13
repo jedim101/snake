@@ -4,7 +4,7 @@ extends Node
 var direction : Vector2
 var next_direction : Vector2
 
-var start_position = Vector2(7 * 40 + 40, 11 * 40 + 40)
+var start_position = Vector2(7 * 40 + 60, 11 * 40 + 60)
 
 var snake: Array
 
@@ -16,11 +16,11 @@ func start_game():
 	get_tree().call_group("snake", "queue_free")
 	$GameOver.hide()
 	snake = [$Head]
-	$Head.position = start_position + Vector2(20, 20)
+	$Head.position = start_position
 	generate_apple()
 
 	for i in range(start_length - 1):
-		new_segment(start_position + Vector2(-(start_length - 1 - i) * 40, 0))
+		new_segment(start_position + Vector2(-(start_length - 1 - i) * 40, 0), false)
 
 	$Timer.start()
 
@@ -38,14 +38,17 @@ func generate_apple():
 	else:
 		$Apple.position = new_position
 
-func new_segment(pos):
-	var body_segment = ColorRect.new();
+func new_segment(pos, turn):
+	var body_segment = Sprite2D.new();
 	add_child(body_segment)
 
 	body_segment.position = pos
-	body_segment.size.x = 40
-	body_segment.size.y = 40
-	body_segment.color = "#00ff00"
+
+	if turn:
+		body_segment.set_texture(preload("res://assests/Turn.png")) 
+	else:
+		body_segment.set_texture(preload("res://assests/Body.png"))
+
 	body_segment.add_to_group("snake")
 
 	snake.append(body_segment)
@@ -82,7 +85,7 @@ func _on_Timer_timeout():
 		get_tree().paused = true
 		return
 
-	new_segment($Head.position - Vector2(20, 20))
+	new_segment($Head.position, ((snake[-1].position + new_head_position)/2 - $Head.position) / 20)
 	$Head.position = new_head_position
 
 	if new_head_position == $Apple.position:
