@@ -4,10 +4,10 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_s41xl")
-start_length = 10
+start_length = 5
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 
 [node name="Head" type="ColorRect" parent="."]
 offset_left = 250.0
@@ -15,5 +15,10 @@ offset_top = 250.0
 offset_right = 290.0
 offset_bottom = 290.0
 color = Color(0.0755415, 0.672819, 0.336423, 1)
+
+[node name="Apple" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

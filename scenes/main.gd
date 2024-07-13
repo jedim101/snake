@@ -11,6 +11,7 @@ var snake: Array
 func _ready():
 	snake = [$Head]
 	$Head.position = start_position
+	generate_apple()
 
 	for i in range(start_length - 1):
 		new_segment(start_position + Vector2(-(start_length - 1 - i) * 40, 0))
@@ -29,20 +30,33 @@ func _process(_delta):
 
 	# $Head.position += direction * 40 * (delta / $Timer.wait_time)
 
+func snake_positions():
+	return snake.map(func(segment): return segment.position)
+
+func generate_apple():
+	var new_position = Vector2(randi_range(0, 20) * 40, randi_range(0, 20) * 40)
+	
+	if new_position in snake_positions():
+		generate_apple()
+	else:
+		$Apple.position = new_position
 
 func _on_Timer_timeout():
 	direction = new_direction
 	var new_head_position = $Head.position + direction * 40
 
-	if new_head_position in snake.map(func(segment): return segment.position):
+	if new_head_position in snake_positions():
 		$Timer.stop()
 		$Head.color = "#000000"
 		return
 
 	new_segment($Head.position)
-	snake.pop_at(1).queue_free()
-	
 	$Head.position = new_head_position
+
+	if new_head_position == $Apple.position:
+		generate_apple()
+	else:
+		snake.pop_at(1).queue_free()
 
 	$Timer.start()
 
