@@ -4,7 +4,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_s41xl")
-length = 10
+start_length = 10
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

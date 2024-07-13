@@ -1,18 +1,19 @@
 extends Node
 
-@export var length: int
+@export var start_length: int
 var direction = Vector2(1, 0)
 var new_direction = Vector2(1, 0)
 
 var start_position = Vector2(400, 400)
 
-var snake = [$Head]
+var snake: Array
 
 func _ready():
+	snake = [$Head]
 	$Head.position = start_position
 
-	for i in range(5):
-		new_segment(start_position + Vector2(-(5 - i) * 40, 0))
+	for i in range(start_length - 1):
+		new_segment(start_position + Vector2(-(start_length - 1 - i) * 40, 0))
 
 	$Timer.start()
 
@@ -31,11 +32,17 @@ func _process(_delta):
 
 func _on_Timer_timeout():
 	direction = new_direction
+	var new_head_position = $Head.position + direction * 40
+
+	if new_head_position in snake.map(func(segment): return segment.position):
+		$Timer.stop()
+		$Head.color = "#000000"
+		return
 
 	new_segment($Head.position)
 	snake.pop_at(1).queue_free()
 	
-	$Head.position += direction * 40
+	$Head.position = new_head_position
 
 	$Timer.start()
 
@@ -44,8 +51,6 @@ func new_segment(pos):
 	add_child(body_segment)
 
 	body_segment.position = pos
-	body_segment.name = str(length - 1)
-
 	body_segment.size.x = 40
 	body_segment.size.y = 40
 	body_segment.color = "#13ac56"
