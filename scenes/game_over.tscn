@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1rc2pe03y8wh"]
+
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_h57al"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkw7t"]
+bg_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vne5h"]
+font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3lne"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_h57al")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 920.0
+offset_bottom = 960.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkw7t")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 920.0
+offset_bottom = 400.0
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_vne5h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 600.0
+offset_right = 150.0
+offset_bottom = 700.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_q3lne")
+text = "Play Again"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

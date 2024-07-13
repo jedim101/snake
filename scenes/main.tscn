@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcsl3cjm6gxbx"]
+[gd_scene load_steps=5 format=3 uid="uid://bcsl3cjm6gxbx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_s41xl"]
 [ext_resource type="Texture2D" uid="uid://c4fge1jjtr6m2" path="res://assests/Snake background.png" id="2_gldqo"]
+[ext_resource type="PackedScene" uid="uid://d1rc2pe03y8wh" path="res://scenes/game_over.tscn" id="3_i72u5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xwban"]
 font_size = 48
@@ -43,4 +44,8 @@ offset_top = 40.0
 offset_bottom = 80.0
 color = Color(1, 0, 0, 1)
 
+[node name="GameOver" parent="." instance=ExtResource("3_i72u5")]
+process_mode = 2
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="play_again" from="GameOver" to="." method="_on_game_over_play_again"]
