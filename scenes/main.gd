@@ -34,11 +34,14 @@ func _process(_delta):
 
 	# $Head.position += direction * 40 * (delta / $Timer.wait_time)
 
+func update_score():
+	$Score.text = "Score: " + str(len(snake) - start_length)
+
 func snake_positions():
 	return snake.map(func(segment): return segment.position)
 
 func generate_apple():
-	var new_position = Vector2(randi_range(0, 21) * 40 + 40, randi_range(0, 21) * 40 + 40)
+	var new_position = Vector2(randi_range(0, 20) * 40 + 40, randi_range(0, 20) * 40 + 40)
 	
 	if new_position in snake_positions():
 		generate_apple()
@@ -61,6 +64,7 @@ func _on_Timer_timeout():
 	else:
 		snake.pop_at(1).queue_free()
 
+	update_score()
 	$Timer.start()
 
 func new_segment(pos):
