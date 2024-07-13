@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcsl3cjm6gxbx"]
+[gd_scene load_steps=7 format=3 uid="uid://bcsl3cjm6gxbx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_s41xl"]
 [ext_resource type="Texture2D" uid="uid://c4fge1jjtr6m2" path="res://assests/Snake background.png" id="2_gldqo"]
 [ext_resource type="Texture2D" uid="uid://pg37aty3skfy" path="res://assests/apple.svg" id="3_b52eo"]
 [ext_resource type="PackedScene" uid="uid://d1rc2pe03y8wh" path="res://scenes/game_over.tscn" id="3_i72u5"]
+[ext_resource type="Texture2D" uid="uid://cotpvh4er4jpu" path="res://assests/Snake head.png" id="3_pquqt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xwban"]
 font_size = 48
@@ -34,10 +35,10 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.15
 
-[node name="Head" type="ColorRect" parent="."]
-offset_left = -40.0
-offset_bottom = 40.0
-color = Color(0, 1, 0, 1)
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(-40, 2.08165e-12)
+texture = ExtResource("3_pquqt")
+centered = false
 
 [node name="Apple" type="Sprite2D" parent="."]
 position = Vector2(-20, 60)

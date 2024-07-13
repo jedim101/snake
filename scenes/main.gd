@@ -42,7 +42,7 @@ func new_segment(pos):
 	body_segment.position = pos
 	body_segment.size.x = 40
 	body_segment.size.y = 40
-	body_segment.color = $Head.color
+	body_segment.color = "#00ff00"
 	body_segment.add_to_group("snake")
 
 	snake.append(body_segment)
