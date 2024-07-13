@@ -27,6 +27,10 @@ func _process(_delta):
 		new_direction = Vector2(0, 1)
 	elif Input.is_action_pressed("move_up"):
 		new_direction = Vector2(0, -1)
+	
+	# no turning around
+	if new_direction + direction == Vector2(0, 0):
+		new_direction = direction
 
 	# $Head.position += direction * 40 * (delta / $Timer.wait_time)
 
