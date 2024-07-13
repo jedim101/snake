@@ -2,7 +2,7 @@ extends Node
 
 @export var start_length: int
 var direction = Vector2(1, 0)
-var new_direction = Vector2(1, 0)
+var next_direction = Vector2(1, 0)
 
 var start_position = Vector2(7 * 40 + 40, 11 * 40 + 40)
 
@@ -19,6 +19,7 @@ func _ready():
 	$Timer.start()
 
 func _process(_delta):
+	var new_direction = next_direction
 	if Input.is_action_pressed("move_right"):
 		new_direction = Vector2(1, 0)
 	elif Input.is_action_pressed("move_left"):
@@ -29,8 +30,8 @@ func _process(_delta):
 		new_direction = Vector2(0, -1)
 	
 	# no turning around
-	if new_direction + direction == Vector2(0, 0):
-		new_direction = direction
+	if new_direction + direction != Vector2(0, 0):
+		next_direction = new_direction
 
 	# $Head.position += direction * 40 * (delta / $Timer.wait_time)
 
@@ -49,7 +50,7 @@ func generate_apple():
 		$Apple.position = new_position
 
 func _on_Timer_timeout():
-	direction = new_direction
+	direction = next_direction
 	var new_head_position = $Head.position + direction * 40
 
 	if new_head_position in snake_positions() or new_head_position.x < 40 or new_head_position.x > 840 or new_head_position.y < 40 or new_head_position.y > 840:
