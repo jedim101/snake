@@ -28,7 +28,7 @@ func snake_positions():
 	return snake.map(func(segment): return segment.position)
 
 func generate_apple():
-	var new_position = Vector2(randi_range(0, 20) * 40 + 40, randi_range(0, 20) * 40 + 40)
+	var new_position = Vector2(randi_range(0, 20) * 40 + 60, randi_range(0, 20) * 40 + 60)
 	
 	if new_position in snake_positions():
 		generate_apple()
@@ -81,7 +81,7 @@ func _on_Timer_timeout():
 	new_segment($Head.position)
 	$Head.position = new_head_position
 
-	if new_head_position == $Apple.position:
+	if new_head_position == $Apple.position + Vector2(-20, -20):
 		generate_apple()
 	else:
 		snake.pop_at(1).queue_free()
