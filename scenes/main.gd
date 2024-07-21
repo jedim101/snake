@@ -105,6 +105,15 @@ func _on_Timer_timeout():
 	else:
 		snake.pop_at(1).queue_free()
 
+		# tail texture
+		var end_segment = snake[1]
+
+		var tail_direction = (end_segment.position - snake[2].position)/40
+
+		end_segment.rotation_degrees = tail_direction.x * 90 + tail_direction.y * 90 + abs(tail_direction.y) * 90
+		end_segment.set_texture(preload("res://assests/Tail.png"))
+
+
 	update_score()
 	$Timer.start()
 
