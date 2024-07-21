@@ -48,10 +48,16 @@ func new_segment(pos, turn):
 		body_segment.set_texture(preload("res://assests/Turn.png"))
 
 		var rotation: int
-		if turn.x + turn.y == 0:
-			rotation = turn.x * 90
+		if turn == Vector2(-1, -1):
+			rotation = 180
+		elif turn == Vector2(-1, 1):
+			rotation = 90
+		elif turn == Vector2(1, -1):
+			rotation = -90
+		elif turn == Vector2(1, 1):
+			rotation = 0
 
-		body_segment.rotation_degrees = ((turn.y + 1) + (turn.x + 1) / 2) * -90
+		body_segment.rotation_degrees = rotation
 	else:
 		body_segment.set_texture(preload("res://assests/Body.png"))
 
